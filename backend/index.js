@@ -64,15 +64,17 @@ app.get("/links", async (req, res) => {
 app.post("/link", async (req, res) => {
     try {
     // Extrae la información del cuerpo de la solicitud
-    const { url } = req.body;
+    const { idLink, title, description, thumbnails } = req.body;
 
     // Parámetros de inserción para DynamoDB
     const params = {
         TableName: "links",
         Item: {
             id: uuid.v1(),
-            link: url,
-            status: true,
+            idLink,
+            title,
+            description,
+            thumbnails
         },
     };
 
@@ -86,21 +88,18 @@ app.post("/link", async (req, res) => {
 });
 
 
-// Define una ruta para eliminar un registro de DynamoDB por ID
 app.delete('/link/:id', async (req, res) => {
-    const id = req.params.id;
+    const {id} = req.params;
     try {
-      // Parámetros de eliminación para DynamoDB
         const params = {
             TableName: "links",
             Key: {
-                id: id, // Reemplaza 'tuClavePrimaria' con el nombre de tu clave primaria en la tabla
+                id: id,
             },
         };
 
-      // Realiza la eliminación en DynamoDB
         const result = await dynamoDB.delete(params);
-      // Envía una respuesta exitosa
+
         res.json(result);
     } catch (error) {
         console.error('Error al eliminar en DynamoDB:', error);
