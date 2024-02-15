@@ -166,7 +166,6 @@ const chooseImg = (item) => {
  * @since 2024.02.15
  */
 const formatTime = (duration) => {
-  console.log(duration)
   const regex = /PT(\d+)M(\d+)S/;
   const match = duration.match(regex);
 

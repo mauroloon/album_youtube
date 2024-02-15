@@ -71,7 +71,10 @@ const addLink = async () => {
       `${urlApiGoogle}/videos?part=snippet&id=${id}&key=${apiKeyYoutube}`
     );
     const data_youtube = await response_youtube.json();
-
+    if (data_youtube.items.length == 0){
+      console.log('Video no encontrado.')
+      return
+    }
     const data_link = data_youtube.items[0].snippet;
     const title = data_link.title;
     const description = data_link.description;
