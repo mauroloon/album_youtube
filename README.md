@@ -13,8 +13,6 @@ Proyecto para crear un album con link de youtube.
 
 **Cloud:** Aws: Lambda, API Gateway, DynamoDB
 
-Cabe destacar que el proyecto de backend funciona gracias al lambda, para actualizar el lambda se debe comprimir los archivos
-de la carpeta backend y subirlos al lambda correspondiente.
 
 ## Instalación de dependencias
 
@@ -67,6 +65,15 @@ Iniciar **backend** o **frontend**
 ## Demo
 
 https://demoalbum.netlify.app
+## Roadmap
+
+- Separar vistas y componentes en frontend
+
+- Separar modelo en express
+
+- Realizar tests
+
+
 ## Authors
 
 - [@MauroloonDev](https://github.com/mauroloon)
