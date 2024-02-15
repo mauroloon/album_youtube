@@ -49,9 +49,10 @@ onClickOutside(target, () => emit("modal-close"));
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: scroll;
 }
 .modal-container {
-  width: 800px;
+  width: 900px;
   margin: 150px auto;
   padding: 20px 30px;
   background-color: #fff;

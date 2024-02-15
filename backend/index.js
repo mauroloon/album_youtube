@@ -84,7 +84,7 @@ app.post("/link", async (req, res) => {
         2024.02.15
     */
     try {
-    const { idLink, title, description, thumbnails } = req.body;
+    const { idLink, title, description, thumbnails, duration } = req.body;
     const params = {
         TableName: "links",
         Item: {
@@ -92,7 +92,8 @@ app.post("/link", async (req, res) => {
             idLink,
             title,
             description,
-            thumbnails
+            thumbnails,
+            duration
         },
     };
 

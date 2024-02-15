@@ -61,6 +61,11 @@ const addLink = async () => {
   const match = contenido.match(regex);
   if (match && match[1]) {
     const id = match[1];
+    const duplicateLink = registerLinks.value.filter((item) => item.idLink === id)
+    if (duplicateLink.length > 0) {
+      linkVideo.value = '';
+      return 
+    }
 
     const response_youtube = await fetch(
       `${urlApiGoogle}/videos?part=snippet&id=${id}&key=${apiKeyYoutube}`
@@ -72,11 +77,17 @@ const addLink = async () => {
     const description = data_link.description;
     const thumbnails = data_link.thumbnails;
 
+    const response_youtube_details = await fetch(
+      `${urlApiGoogle}/videos?part=contentDetails&id=${id}&key=${apiKeyYoutube}`
+    );
+    const data_youtube_details = await response_youtube_details.json();
+
     const params = {
       idLink: id,
       title: title,
       description: description,
       thumbnails: thumbnails,
+      duration: data_youtube_details.items[0].contentDetails.duration
     };
 
     const response_add = await fetch(urlApiGateway + "/link", {
@@ -93,6 +104,7 @@ const addLink = async () => {
       linkVideo.value = '';
     }
   } else {
+    linkVideo.value = '';
     console.log("No se pudo extraer el ID del video.");
   }
 };

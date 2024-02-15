@@ -13,6 +13,9 @@
         <button type="button" class="btn btn-dark close" @click="openModalDelete(item.id)">
           <img class="icon-delete" src="/static/icons/x-white.svg" alt="Icono X">
         </button>
+        <span class="duration-video">
+          {{ formatTime(item.duration) }}
+        </span>
       </div>
     </div>
   </div>
@@ -32,9 +35,12 @@
           ></iframe>
         </div>
         <div class="col">
-          <h3>{{ linkSelectedData.title }}</h3>
-          <br />
-          <p>{{ linkSelectedData.description }}</p>
+          <div class="row">
+            <div class="col"><h3>{{ linkSelectedData.title }}</h3></div>
+          </div>
+          <div class="row">
+            <div class="col"><p>{{ linkSelectedData.description }}</p></div>
+          </div>
         </div>
       </div>
     </template>
@@ -153,6 +159,29 @@ const chooseImg = (item) => {
 
   return item.default.url
 }
+
+/**
+ * Formatea el tiempo que viene de Youtube
+ * @author MauroloonDev
+ * @since 2024.02.15
+ */
+const formatTime = (duration) => {
+  console.log(duration)
+  const regex = /PT(\d+)M(\d+)S/;
+  const match = duration.match(regex);
+
+  if (match) {
+    const min = match[1] ? parseInt(match[1], 10) : 0;
+    const seg = match[2] ? parseInt(match[2], 10) : 0;
+
+    const minFormat = min < 10 ? `0${min}` : min;
+    const segFormat = seg < 10 ? `0${seg}` : seg;
+
+    return `${minFormat}:${segFormat}`;
+  } else {
+    return '00:00';
+  }
+}
 </script>
 
 <style scoped>
@@ -168,6 +197,16 @@ const chooseImg = (item) => {
   position: absolute;
   top: 0;
   right: 0;
+}
+.duration-video {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: white;
+  background-color: black;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 .icon-delete {
   height: 15px;
