@@ -44,7 +44,7 @@ Instalar dependencias en **backend** y **frontend**
 
 Configuración de backend
 
-Comentar y descomentar código
+Comentar y descomentar código en el archivo **backend/index.js**
 ```bash
     //Descomentar para probar localmente
     app.listen(port, () => {
