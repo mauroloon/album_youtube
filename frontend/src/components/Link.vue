@@ -3,8 +3,10 @@
     <div class="col-4 pb-4" v-for="item in links" :index="item.id">
       <div class="image-container">
         <img
-          :src="item.thumbnails.standard.url"
+          :src="chooseImg(item.thumbnails)"
           class="img-link"
+          height="480"
+          width="640"
           alt="Descripción de la imagen"
           @click="openModal(item)"
         />
@@ -95,7 +97,7 @@ const openModal = (item) => {
     link: `https://www.youtube.com/embed/${item.idLink}`,
     title: item.title,
     description: item.description,
-    src: item.thumbnails.standard.url,
+    src: item.thumbnails.default.url,
   };
 };
 
@@ -129,10 +131,28 @@ const closeModalDelete = () => {
   idLinkSelected.value = "";
 };
 
+/**
+ * Envía id a eliminar
+ * @author MauroloonDev
+ * @since 2024.02.15
+ */
 const emitDelete = () => {
   emit("delete-link", idLinkSelected.value);
   closeModalDelete();
 };
+
+/**
+ * Selecciona img con mejor calidad
+ * @author MauroloonDev
+ * @since 2024.02.15
+ */
+const chooseImg = (item) => {
+  if(item.standard) {
+    return item.standard.url
+  }
+
+  return item.default.url
+}
 </script>
 
 <style scoped>
