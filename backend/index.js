@@ -15,13 +15,18 @@ app.use(cors());
 
 const dynamoDB = DynamoDBDocument.from(new DynamoDB());
 
-// TODO: Comentar funciones
-app.get("/api", (req, res) => {
-    res.send("hello world!");
-});
-
-
 app.get("/link", async (req, res) => {
+    /* 
+        Obtiene los datos a través de un id 
+
+        Author
+        ------
+            - MauroloonDev
+
+        Date
+        ----
+        2024.02.15
+    */
     try {
     const id = 0;
     const params = {
@@ -41,6 +46,17 @@ app.get("/link", async (req, res) => {
 });
 
 app.get("/links", async (req, res) => {
+    /* 
+        Obtiene todos los links registrados.
+
+        Author
+        ------
+            - MauroloonDev
+
+        Date
+        ----
+        2024.02.15
+    */
     try {
     const params = {
         TableName: "links",
@@ -56,6 +72,17 @@ app.get("/links", async (req, res) => {
 });
 
 app.post("/link", async (req, res) => {
+    /* 
+        Registra un nuevo link
+
+        Author
+        ------
+            - MauroloonDev
+
+        Date
+        ----
+        2024.02.15
+    */
     try {
     const { idLink, title, description, thumbnails } = req.body;
     const params = {
@@ -80,6 +107,17 @@ app.post("/link", async (req, res) => {
 
 
 app.delete('/link/:id', async (req, res) => {
+    /* 
+        Elimina un link
+
+        Author
+        ------
+            - MauroloonDev
+
+        Date
+        ----
+        2024.02.15
+    */
     const {id} = req.params;
     try {
         const params = {
