@@ -15,6 +15,7 @@ app.use(cors());
 
 const dynamoDB = DynamoDBDocument.from(new DynamoDB());
 
+// TODO: Comentar funciones
 app.get("/api", (req, res) => {
     res.send("hello world!");
 });
@@ -23,18 +24,15 @@ app.get("/api", (req, res) => {
 app.get("/link", async (req, res) => {
     try {
     const id = 0;
-    // Parámetros de consulta para DynamoDB filtrando por ID
     const params = {
         TableName: "links",
         Key: {
-            id: id, // Reemplaza 'tuClavePrimaria' con el nombre de tu clave primaria en la tabla
+            id: id,
         },
     };
 
-    // Realiza la consulta a DynamoDB
     const result = await dynamoDB.get(params);
 
-    // Envía los resultados como respuesta
     res.json(result);
     } catch (error) {
     console.error("Error al obtener datos de DynamoDB:", error);
@@ -44,16 +42,12 @@ app.get("/link", async (req, res) => {
 
 app.get("/links", async (req, res) => {
     try {
-    const id = 0;
-    // Parámetros de consulta para DynamoDB filtrando por ID
     const params = {
         TableName: "links",
     };
 
-    // Realiza la consulta a DynamoDB
     const result = await dynamoDB.scan(params);
 
-    // Envía los resultados como respuesta
     res.json(result);
     } catch (error) {
         console.error("Error al obtener datos de DynamoDB:", error);
@@ -63,10 +57,7 @@ app.get("/links", async (req, res) => {
 
 app.post("/link", async (req, res) => {
     try {
-    // Extrae la información del cuerpo de la solicitud
     const { idLink, title, description, thumbnails } = req.body;
-
-    // Parámetros de inserción para DynamoDB
     const params = {
         TableName: "links",
         Item: {
