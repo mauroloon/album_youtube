@@ -8,13 +8,8 @@
           alt="Descripción de la imagen"
           @click="openModal(item)"
         />
-        <button 
-          type="button" 
-          class="btn btn-dark close" 
-          aria-label="Cerrar"
-          @click="openModalDelete(item.id)"
-        >
-          <span aria-hidden="true">&times;</span>
+        <button type="button" class="btn btn-dark close" @click="openModalDelete(item.id)">
+          <img class="icon-delete" src="/static/icons/x-white.svg" alt="Icono X">
         </button>
       </div>
     </div>
@@ -51,7 +46,7 @@
   >
     <template #content>
       <div>
-        <p>Seguro que quieres eliminar este video?</p>
+        <p>¿Seguro que quieres eliminar este video?</p>
       </div>
     </template>
     <template #footer>
@@ -153,5 +148,8 @@ const emitDelete = () => {
   position: absolute;
   top: 0;
   right: 0;
+}
+.icon-delete {
+  height: 15px;
 }
 </style>
