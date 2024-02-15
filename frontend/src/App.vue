@@ -1,22 +1,20 @@
 <template>
-  <div class="container">
+  <div class="container p-5">
     <h1>Añadir nuevo video</h1>
-    <div class="row g-3">
-      <div class="col-auto">
-        <label for="inputPassword2" class="visually-hidden">Añadir</label>
-        <input
-          type="text"
-          class="form-control"
-          id="inputPassword2"
-          placeholder="Añadir"
-          v-model="linkVideo"
-        />
+      <div class="row g-3">
+        <div class="col-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Añadir"
+            v-model="linkVideo"
+          />
+        </div>
+        <div class="col-3 d-grid">
+          <button @click="addLink" class="btn btn-primary mb-3">Añadir</button>
+        </div>
       </div>
-      <div class="col-auto">
-        <button @click="addLink" class="btn btn-primary mb-3">Añadir</button>
-      </div>
-    </div>
-    <Link :links="registerLinks" @delete-link="deleteLink" />
+      <Link :links="registerLinks" @delete-link="deleteLink" />
   </div>
 </template>
 
@@ -48,8 +46,19 @@ const loadLinks = async () => {
   registerLinks.value = data.Items;
 };
 
+/**
+ * Agrega link(video) al album
+ * @author MauroloonDev
+ * @since 2024.02.15
+ */
 const addLink = async () => {
-  const match = linkVideo.value.match(regex);
+  const contenido = linkVideo.value.toString().trim();
+
+  if (contenido === '') {
+    console.log("Campo vacío.");
+    return
+  }
+  const match = contenido.match(regex);
   if (match && match[1]) {
     const id = match[1];
 
@@ -70,7 +79,6 @@ const addLink = async () => {
       thumbnails: thumbnails,
     };
 
-    // TODO: Mandar datos a apigateway mediante post
     const response_add = await fetch(urlApiGateway + "/link", {
       method: "POST",
       headers: {
@@ -82,12 +90,18 @@ const addLink = async () => {
     // TODO: agregar mensaje de éxito y agregar nuevo video al array (o cargarlos nuevamente (menos optimo))
     if (response_add.status == 200) {
       registerLinks.value.push(params);
+      linkVideo.value = '';
     }
   } else {
     console.log("No se pudo extraer el ID del video.");
   }
 };
 
+/**
+ * Borra link(video) del album
+ * @author MauroloonDev
+ * @since 2024.02.15
+ */
 const deleteLink = async (id) => {
   const response_remove = await fetch(`${urlApiGateway}/link/${id}`, {
     method: "DELETE",
