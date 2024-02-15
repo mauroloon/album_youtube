@@ -26,7 +26,8 @@ import { ref, onMounted } from "vue";
 
 const registerLinks = ref([]);
 const linkVideo = ref("");
-const regex = /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+const regex =
+  /(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
 
 const apiKeyYoutube = import.meta.env.VITE_API_KEY_YOUTUBE;
 const urlApiGateway = import.meta.env.VITE_URL_API_GATEWAY;
@@ -36,6 +37,11 @@ onMounted(() => {
   loadLinks();
 });
 
+/**
+ * Carga los links registrados.
+ * @author MauroloonDev
+ * @since 2024.02.15
+ */
 const loadLinks = async () => {
   const response = await fetch(urlApiGateway + "/links");
   const data = await response.json();
