@@ -55,6 +55,15 @@ Comentar y descomentar código en el archivo **backend/index.js**
     module.exports.handler = serverless(app);
 ```
 
+Configuración de frontend (actualización readme 16/02/2024)
+En el directorio de frontend crear archivo .env con las siguientes variables
+
+```bash
+    VITE_URL_API_GATEWAY=https://pgbjqwcy8g.execute-api.us-east-2.amazonaws.com/v1
+    VITE_API_KEY_YOUTUBE= [TOKEN_API_KEY]
+    VITE_URL_API_GOOGLE=https://www.googleapis.com/youtube/v3
+```
+
 Iniciar **backend** o **frontend**
 
 ```bash
