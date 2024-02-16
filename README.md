@@ -78,3 +78,25 @@ https://demoalbum.netlify.app
 
 - [@MauroloonDev](https://github.com/mauroloon)
 
+
+## Screenshots
+
+- Carga de videos
+
+![App Screenshot](https://i.postimg.cc/877WcwXT/Captura-de-pantalla-2024-02-15-224912.png)
+
+- Agregar video
+
+![App Screenshot](https://i.postimg.cc/B8DKcbGy/Captura-de-pantalla-2024-02-15-225014.png)
+
+![App Screenshot](https://i.postimg.cc/7JPJkNT8/Captura-de-pantalla-2024-02-15-225046.png)
+
+- Eliminar video
+
+![App Screenshot](https://i.postimg.cc/MngBQRgV/Captura-de-pantalla-2024-02-15-225129.png)
+
+![App Screenshot](https://i.postimg.cc/xJ2bsQfd/Captura-de-pantalla-2024-02-15-225142.png)
+
+- Detalle del video 
+
+![App Screenshot](https://i.postimg.cc/PrFXmt7C/Captura-de-pantalla-2024-02-15-225918.png)
